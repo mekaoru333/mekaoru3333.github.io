@@ -1,0 +1,29 @@
+<html>
+    <div id="text-button" onclick="start_notification();">Click</div>
+
+    <body>
+        <script type="text/javascript">
+            function start_notification() {
+    if ( ! window.Notification) { return false; }
+    if (window.Notification.permission === 'denied' || window.Notification.permission === 'default' ) {
+        window.Notification.requestPermission().then(function() {
+            exec_notification();
+        });
+    } else {
+        exec_notification();
+    }
+}
+function exec_notification() {
+    var notifyTitle = '通知タイトル通知タイトル通知タイトル通知タイトル通'; 		// 25文字まで表示される
+    var notifyBody  = '通知内容のテストです通知内容のテストです通知内容のテス';	// 27文字まで表示される
+
+    var options = {
+        'body': notifyBody,
+        // icon: notifyIcon
+    }
+    var n = new Notification(notifyTitle, options);
+    setTimeout(n.close.bind(n), 5000);
+}
+        </script>
+    </body>
+</html>
